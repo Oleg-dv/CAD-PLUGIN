@@ -11,6 +11,7 @@ namespace KompasWrapper
         /// Объект класса KompasWrapper
         /// </summary>
         private KompasWrapper _kompasWrapper;
+
         /// <summary>
         /// Создание модели
         /// </summary>

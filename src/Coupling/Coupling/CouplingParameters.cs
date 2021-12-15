@@ -12,34 +12,42 @@ namespace KompasWrapper
         /// Поле ширины кольца
         /// </summary>
         private double _couplingWidth;
+
         /// <summary>
         /// Поле диаметра центрального отверстия
         /// </summary>
         private double _centralHoleDiameter;
+
         /// <summary>
         /// Поле максимально возможного диаметра
         /// </summary>
         private double _maxCenterHoleDiameter = 30;
+
         /// <summary>
         /// Поле количества малых отверстий 
         /// </summary>
         private int _countOfSmallHoles;
+
         /// <summary>
         /// Поле диаметра кольца втулочно-пальцевой муфты
         /// </summary>
         private double _couplingDiameter;
+
         /// <summary>
         /// Поле диаметра малых отверстий
         /// </summary>
         private double _smallHolesDiameter;
+
         /// <summary>
         /// Поле максимально возможного диаметра малых отверстий
         /// </summary>
         private double _maxSmallHolesDiameter = 24;
+
         /// <summary>
         /// Поле диаметра круга, по которому располагаются малые отверстия
         /// </summary>
         private double _smallHoleCircleDiameter;
+
         /// <summary>
         /// Диаметр центрального отверстия
         /// </summary>
@@ -68,6 +76,7 @@ namespace KompasWrapper
                 SmallHoleCircleDiameter = (value + CouplingDiameter) / 2;
             } 
         }
+
         /// <summary>
         /// Количество малых отверстий
         /// </summary>
@@ -89,6 +98,7 @@ namespace KompasWrapper
                 _countOfSmallHoles = value;
             } 
         }
+
         /// <summary>
         /// Диаметр кольца втулочно-пальцевой муфты
         /// </summary>
@@ -116,6 +126,7 @@ namespace KompasWrapper
                 MaxSmallHoleDiameter = value - 10 - MaxCenterHoleDiameter;
             }
         }
+
         /// <summary>
         /// Ширина кольца втулочно-пальцевой муфты
         /// </summary>
@@ -137,6 +148,7 @@ namespace KompasWrapper
                 _couplingWidth = value;
             }
         }
+
         /// <summary>
         /// Диаметр малых отверстий
         /// </summary>
@@ -160,6 +172,7 @@ namespace KompasWrapper
 
             }
         }
+
         /// <summary>
         /// Диаметр кольца по которому располагаются малые отверстия
         /// </summary>
@@ -179,6 +192,7 @@ namespace KompasWrapper
                 _smallHoleCircleDiameter = value;
             }
         }
+
         /// <summary>
         /// Максимальный диаметр центрального отверстия
         /// </summary>
@@ -198,6 +212,7 @@ namespace KompasWrapper
                 _maxCenterHoleDiameter = value;
             }
         }
+
         /// <summary>
         /// Максимально возможный диаметр малых отверстий
         /// </summary>
@@ -217,6 +232,7 @@ namespace KompasWrapper
                 _maxSmallHolesDiameter = value;
             }
         }
+
         /// <summary>
         /// Исключение
         /// </summary>

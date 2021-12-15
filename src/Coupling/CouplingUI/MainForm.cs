@@ -87,6 +87,7 @@ namespace CouplingUI
                 ShowMessage(sender, exception.Message);
             }
         }
+
         /// <summary>
         /// Выход из Combobox и внесение данных в параметры
         /// </summary>
@@ -108,6 +109,7 @@ namespace CouplingUI
                 ShowMessage(sender, exception.Message);
             }
         }
+
         /// <summary>
         /// Изменение текста у Label
         /// </summary>
@@ -157,6 +159,7 @@ namespace CouplingUI
                  default: break;
              }            
         }
+
         /// <summary>
         /// Вывод сообщения об ошибке
         /// </summary>
