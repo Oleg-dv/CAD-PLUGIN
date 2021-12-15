@@ -59,7 +59,7 @@ namespace CouplingUI
 
             buildButton.Enabled = false;
 
-            CouplingBuilder couplingBuilder = new CouplingBuilder();
+            var couplingBuilder = new CouplingBuilder();
             couplingBuilder.CreateModel(_couplingParameters);
 
             buildButton.Enabled = true;
@@ -174,6 +174,7 @@ namespace CouplingUI
             ((TextBox)sender).ForeColor = Color.Red;
         }
 
+        //TODO:
         private void MainForm_Load(object sender, EventArgs e)
         {
 

@@ -200,6 +200,5 @@ namespace KompasWrapper
             Kompas = OpenKompas();
             CreateDocument();
         }
-
     }
 }

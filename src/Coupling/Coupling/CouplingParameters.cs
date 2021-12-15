@@ -1,5 +1,6 @@
 ﻿using System;
 
+//TODO: RSDN
 namespace KompasWrapper
 {
     /// <summary>
@@ -7,6 +8,7 @@ namespace KompasWrapper
     /// </summary>
     public class CouplingParameters
     {
+        //TODO:
         #region [Parameters and property]
         /// <summary>
         /// Поле ширины кольца
@@ -59,6 +61,7 @@ namespace KompasWrapper
             }
             set 
             {
+                //TODO:
                 if(value > MaxCenterHoleDiameter || value < 10)
                 {
                     throw new ArgumentException("" +
@@ -88,11 +91,11 @@ namespace KompasWrapper
             } 
             set 
             {
+                //TODO:
                 if (value > 8 || value < 3)
                 {
-                    throw new ArgumentException("" +
-                        "Неверное значение = " + value + " " +
-                        "шт. Область допустимых значений: 3 шт - 8 шт!");
+                    throw new ArgumentException(
+                        $"Неверное значение = {value} шт. Область допустимых значений: 3 шт - 8 шт!");
                 }
 
                 _countOfSmallHoles = value;
@@ -110,6 +113,7 @@ namespace KompasWrapper
             }
             set 
             {
+                //TODO:
                 if (value > 70 || value < 40)
                 {
 
@@ -138,6 +142,7 @@ namespace KompasWrapper
             } 
             set 
             {
+                //TODO:
                 if (value > 50 || value < 10)
                 {
                     throw new ArgumentException("" +
@@ -238,6 +243,7 @@ namespace KompasWrapper
         /// </summary>
         private static void ArgumentException()
         {
+            //TODO: занести всю проверку
             throw new ArgumentException($"Значение должно быть больше нуля");
         }
 
