@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Coupling
+namespace KompasWrapper
 {
     /// <summary>
     /// Класс параметров кольца втулочно пальцевой муфты.

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Kompas6API5;
 using Kompas6Constants3D;
 
-namespace Coupling
+namespace KompasWrapper
 {
     /// <summary>
     /// Класс для работы с Компас 3D

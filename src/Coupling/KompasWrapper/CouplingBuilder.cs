@@ -1,6 +1,6 @@
 ﻿
 
-namespace Coupling
+namespace KompasWrapper
 {
     /// <summary>
     /// Класс отвечающий за построение подели

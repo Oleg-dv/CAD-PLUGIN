@@ -84,6 +84,10 @@
       <Project>{5a0ee3c7-a598-4692-90da-ccfe977637ed}</Project>
       <Name>Coupling</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KompasWrapper\KompasWrapper.csproj">
+      <Project>{172bc5c2-0be4-47c2-8f61-c2d044828a19}</Project>
+      <Name>KompasWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-using Coupling;
+using KompasWrapper;
 
 namespace CouplingUI
 {

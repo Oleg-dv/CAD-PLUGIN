@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Coupling.Properties
+namespace KompasWrapper.Properties
 {
 
 
