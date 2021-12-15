@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouplingUI", "CouplingUI\CouplingUI.csproj", "{4EEE5321-3AD0-43CE-AEC4-3A101F0F8172}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coupling", "Coupling\Coupling.csproj", "{5A0EE3C7-A598-4692-90DA-CCFE977637ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coupling.UnitTests", "Coupling.UnitTest\Coupling.UnitTests.csproj", "{DA029A9C-6E5D-4374-834E-0C9F5B939958}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4EEE5321-3AD0-43CE-AEC4-3A101F0F8172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EEE5321-3AD0-43CE-AEC4-3A101F0F8172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EEE5321-3AD0-43CE-AEC4-3A101F0F8172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0EE3C7-A598-4692-90DA-CCFE977637ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0EE3C7-A598-4692-90DA-CCFE977637ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0EE3C7-A598-4692-90DA-CCFE977637ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0EE3C7-A598-4692-90DA-CCFE977637ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA029A9C-6E5D-4374-834E-0C9F5B939958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA029A9C-6E5D-4374-834E-0C9F5B939958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA029A9C-6E5D-4374-834E-0C9F5B939958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA029A9C-6E5D-4374-834E-0C9F5B939958}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
