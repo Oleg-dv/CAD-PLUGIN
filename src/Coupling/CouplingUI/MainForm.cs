@@ -173,11 +173,6 @@ namespace CouplingUI
             ((TextBox)sender).BackColor = Color.MistyRose;
             ((TextBox)sender).ForeColor = Color.Red;
         }
-
         //TODO:
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -25,28 +25,13 @@ namespace KompasWrapper.UnitTest
             Assert.AreEqual(expectedValue, parameter.CentralHoleDiameter);
         }
 
-        [TestCase(TestName = "Проверка на введение значения меньше" +
+        [TestCase (5,TestName = "Проверка на введение значения меньше" +
             " минимально возможного диаметра центрального отверстия")]
-        public void TestSetCentralHoleDiameter_IncorrectValueLess10_ArgumentException()
+        [TestCase(35, TestName = "Проверка на введение значения" +
+                                 " диаметра центрального отверстия больше максимального")]
+        public void TestSetCentralHoleDiameter_IncorrectValue_ArgumentException(double expectedValue)
         {
             //Arrange
-            var expectedValue = 5;
-            var parameter = new CouplingParameters();
-
-            //Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                //Act
-                parameter.CentralHoleDiameter = expectedValue;
-            });
-        }
-
-        [TestCase(TestName = "Проверка на введение значения" +
-            " диаметра центрального отверстия больше максимального")]
-        public void TestSetCentralHoleDiameter_IncorrectValueMore30_ArgumentException()
-        {
-            //Arrange
-            var expectedValue = 35;
             var parameter = new CouplingParameters();
 
             //Assert
@@ -72,28 +57,13 @@ namespace KompasWrapper.UnitTest
             Assert.AreEqual(expectedValue, parameter.CountOfSmallHoles);
         }
 
-        [TestCase(TestName = "Проверка на введение значения" +
+        [TestCase(0, TestName = "Проверка на введение значения" +
             " количества отверстий меньше минимального")]
-        public void TestSetCountOfSmallHoles_IncorrectValueLess3_ArgumentException()
+        [TestCase(10, TestName = "Проверка на введение значения количества" +
+                             " отверстий больше максимального")]
+        public void TestSetCountOfSmallHoles_IncorrectValue_ArgumentException(int expectedValue)
         {
             //Arrange
-            var expectedValue = 0;
-            var parameter = new CouplingParameters();
-
-            //Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                //Act
-                parameter.CountOfSmallHoles = expectedValue;
-            });
-        }
-
-        [TestCase(TestName = "Проверка на введение значения количества" +
-            " отверстий больше максимального")]
-        public void TestSetCountOfSmallHoles_IncorrectValueMore8_ArgumentException()
-        {
-            //Arrange
-            var expectedValue = 10;
             var parameter = new CouplingParameters();
 
             //Assert
@@ -119,28 +89,13 @@ namespace KompasWrapper.UnitTest
             Assert.AreEqual(expectedValue, parameter.CouplingDiameter);
         }
 
-        [TestCase(TestName = "Проверка на введение значения диаметра кольца" +
-    " меньше минимального")]
-        public void TestSetCouplingDiameter_IncorrectValueLess40_ArgumentException()
+        [TestCase(0, TestName = "Проверка на введение значения диаметра кольца" + 
+                                " меньше минимального")]
+        [TestCase(80, TestName = "Проверка на введение значения диаметра кольца" +
+                             " больше максимального")]
+        public void TestSetCouplingDiameter_IncorrectValue_ArgumentException(double expectedValue)
         {
             //Arrange
-            var expectedValue = 0;
-            var parameter = new CouplingParameters();
-
-            //Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                //Act
-                parameter.CouplingDiameter = expectedValue;
-            });
-        }
-
-        [TestCase(TestName = "Проверка на введение значения диаметра кольца" +
-            " больше максимального")]
-        public void TestSetCouplingDiameter_IncorrectValueMore70_ArgumentException()
-        {
-            //Arrange
-            var expectedValue = 80;
             var parameter = new CouplingParameters();
 
             //Assert
@@ -166,26 +121,11 @@ namespace KompasWrapper.UnitTest
             Assert.AreEqual(expectedValue, parameter.CouplingWidth);
         }
 
-        [TestCase(TestName = "Проверка на введение значения толщины меньше минимального")]
-        public void TestSetCouplingWidth_IncorrectValueLess10_ArgumentException()
+        [TestCase(0, TestName = "Проверка на введение значения толщины меньше минимального")]
+        [TestCase(80, TestName = "Проверка на введение значения толщины больше максимального")]
+        public void TestSetCouplingWidth_IncorrectValue_ArgumentException(double expectedValue)
         {
             //Arrange
-            var expectedValue = 0;
-            var parameter = new CouplingParameters();
-
-            //Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                //Act
-                parameter.CouplingWidth = expectedValue;
-            });
-        }
-
-        [TestCase(TestName = "Проверка на введение значения толщины больше максимального")]
-        public void TestSetCouplingWidth_IncorrectValueMore50_ArgumentException()
-        {
-            //Arrange
-            var expectedValue = 80;
             var parameter = new CouplingParameters();
 
             //Assert
@@ -211,28 +151,13 @@ namespace KompasWrapper.UnitTest
             Assert.AreEqual(expectedValue, parameter.SmallHolesDiameter);
         }
 
-        [TestCase(TestName = "Проверка на введение значения" +
+        [TestCase(0, TestName = "Проверка на введение значения" +
             " диаметра малых отверстий меньше минимального")]
-        public void TestSetSmallHolesDiameter_IncorrectValueLess6_ArgumentException()
+        [TestCase(80, TestName = "Проверка на введение значения" +
+                             " диаметра малых отверстий больше максимального")]
+        public void TestSetSmallHolesDiameter_IncorrectValue_ArgumentException(double expectedValue)
         {
             //Arrange
-            var expectedValue = 0;
-            var parameter = new CouplingParameters();
-
-            //Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                //Act
-                parameter.SmallHolesDiameter = expectedValue;
-            });
-        }
-
-        [TestCase(TestName = "Проверка на введение значения" +
-            " диаметра малых отверстий больше максимального")]
-        public void TestSetSmallHolesDiameter_IncorrectValueMore24_ArgumentException()
-        {
-            //Arrange
-            var expectedValue = 80;
             var parameter = new CouplingParameters();
 
             //Assert
@@ -303,6 +228,24 @@ namespace KompasWrapper.UnitTest
                 //Act
                 parameter.MaxCenterHoleDiameter = expectedValue;
             });
+        }
+
+        [TestCase(TestName = "Проверка на введение значения +" +
+                             "CenterHoleDiameter ")]
+        public void TestSetCouplingDiameter_CorrectValue()
+        {
+            //Arrange
+            var expectedValue = 45;
+            var centralHoleDiameter = 15;
+            var parameter = new CouplingParameters();
+
+            //Act
+            parameter.CouplingDiameter = expectedValue;
+            parameter.CentralHoleDiameter = centralHoleDiameter;
+
+            //Assert
+            Assert.AreEqual(parameter.MaxSmallHoleDiameter, (
+                parameter.CouplingDiameter - parameter.CentralHoleDiameter - 10));
         }
 
         //Максимальный диаметр малых отверстий
