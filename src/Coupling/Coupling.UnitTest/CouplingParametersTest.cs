@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-//TODO:
 namespace KompasWrapper.UnitTest
 {
     public class CouplingParametersTest
     {
+        //TODO:
         //Центральное отверстие
         [TestCase(TestName = "Проверка геттера и сеттера у диаметра центрального отверстия")]
         public void TestSetCentralHoleDiameter_CorrectValue_ResultCorrectSet()

@@ -1,7 +1,5 @@
 ﻿using System;
 
-
-//TODO: RSDN
 namespace KompasWrapper
 {
     /// <summary>
@@ -48,8 +46,7 @@ namespace KompasWrapper
         /// Минимальный диаметр малых отверстий
         /// </summary>
         public const int MIN_SMALL_HOLES_DIAMETER = 2;
-
-        //TODO:
+        
         /// <summary>
         /// Поле ширины кольца
         /// </summary>
@@ -101,7 +98,7 @@ namespace KompasWrapper
             }
             set
             {
-                //TODO:
+                //TODO: дубль
                 if(value > MaxCenterHoleDiameter || value < MIN_CENTRAL_HOLE_DIAMETER)
                 {
                     throw new ArgumentException("Неверное значение " +
@@ -128,7 +125,7 @@ namespace KompasWrapper
             } 
             set 
             {
-                //TODO:
+                //TODO: дубль
                 if (value > MAX_COUNT_OF_SMALL_HOLES || value < MIN_COUNT_OF_SMALL_HOLES)
                 {
                     throw new ArgumentException(
@@ -178,7 +175,7 @@ namespace KompasWrapper
             }
             set 
             {
-                //TODO:
+                //TODO: дубль
                 if (value > MAX_COUPLING_DIAMETER || value < MIN_COUPLING_DIAMETER)
                 {
                     throw new ArgumentException("Неверное значение " +
@@ -207,7 +204,7 @@ namespace KompasWrapper
             } 
             set 
             {
-                //TODO:
+                //TODO: дубль
                 if (value > MAX_COUPLING_WIDTH || value < MIN_COUPLING_WIDTH)
                 {
                     throw new ArgumentException("Неверное значение " +
@@ -231,6 +228,7 @@ namespace KompasWrapper
             }
             set 
             {
+                //TODO: дубль
                 if (value > MaxSmallHoleDiameter || value < MIN_SMALL_HOLES_DIAMETER)
                 {
                     throw new ArgumentException("Неверное значение " +
@@ -302,7 +300,6 @@ namespace KompasWrapper
         /// </summary>
         private static bool ArgumentException(double value)
         {
-            //TODO: занести всю проверку
             if (value < 0)
             {
                 throw new ArgumentException($"Значение должно быть больше нуля");

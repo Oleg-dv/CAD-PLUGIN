@@ -10,6 +10,7 @@ namespace CouplingUI
     /// </summary>
     public partial class MainForm : Form
     {
+        //TODO: RSDN
         /// <summary>
         /// Поле параметров
         /// </summary>
@@ -32,6 +33,7 @@ namespace CouplingUI
                     _couplingParameters.MaxSmallHoleDiameter);
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Построить
         /// </summary>
@@ -71,6 +73,7 @@ namespace CouplingUI
             buildButton.Enabled = true;
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Запись параметров в обьект CouplingParameters
         /// </summary>
@@ -94,6 +97,7 @@ namespace CouplingUI
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Выход из Combobox и внесение данных в параметры
         /// </summary>
@@ -185,7 +189,5 @@ namespace CouplingUI
             ((TextBox)sender).BackColor = Color.MistyRose;
             ((TextBox)sender).ForeColor = Color.Red;
         }
-
-        //TODO:
     }
 }
