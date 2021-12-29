@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-
 using KompasWrapper;
 
 namespace CouplingUI
@@ -24,6 +23,13 @@ namespace CouplingUI
             
             countOfSmallHolesComboBox.SelectedIndex = 0;
             _couplingParameters.CountOfSmallHoles = 3;
+
+            centralHoleDiameterLabel.Text = 
+                ChangeTextLabel(CouplingParameters.MIN_CENTRAL_HOLE_DIAMETER,
+                    _couplingParameters.MaxCenterHoleDiameter);
+            smallHolesDiameterLabel.Text = 
+                ChangeTextLabel(CouplingParameters.MIN_SMALL_HOLES_DIAMETER,
+                    _couplingParameters.MaxSmallHoleDiameter);
         }
 
         /// <summary>
@@ -99,6 +105,9 @@ namespace CouplingUI
             {
                 _couplingParameters.CountOfSmallHoles = 
                     Convert.ToInt32(countOfSmallHolesComboBox.SelectedItem);
+                smallHolesDiameterLabel.Text =
+                    ChangeTextLabel(CouplingParameters.MIN_SMALL_HOLES_DIAMETER,
+                        _couplingParameters.MaxSmallHoleDiameter);
             }
             catch (FormatException exception)
             {
@@ -140,17 +149,20 @@ namespace CouplingUI
                      _couplingParameters.CouplingDiameter = value;
 
                     smallHolesDiameterLabel.Text =
-                       ChangeTextLabel(6, _couplingParameters.MaxSmallHoleDiameter);
+                       ChangeTextLabel(CouplingParameters.MIN_SMALL_HOLES_DIAMETER,
+                           _couplingParameters.MaxSmallHoleDiameter);
 
                     centralHoleDiameterLabel.Text =
-                       ChangeTextLabel(10, _couplingParameters.MaxCenterHoleDiameter);
+                       ChangeTextLabel(CouplingParameters.MIN_CENTRAL_HOLE_DIAMETER,
+                           _couplingParameters.MaxCenterHoleDiameter);
                      break;
 
                  case nameof(centralHoleDiameterTextBox):
                      _couplingParameters.CentralHoleDiameter = value;
 
                     smallHolesDiameterLabel.Text =
-                       ChangeTextLabel(6, _couplingParameters.MaxSmallHoleDiameter);
+                       ChangeTextLabel(CouplingParameters.MIN_SMALL_HOLES_DIAMETER,
+                           _couplingParameters.MaxSmallHoleDiameter);
                      break;
 
                  case nameof(smallHolesDiameterTextBox):
@@ -173,6 +185,7 @@ namespace CouplingUI
             ((TextBox)sender).BackColor = Color.MistyRose;
             ((TextBox)sender).ForeColor = Color.Red;
         }
+
         //TODO:
     }
 }

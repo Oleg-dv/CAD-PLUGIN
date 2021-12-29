@@ -141,7 +141,7 @@ namespace KompasWrapper.UnitTest
         public void TestSetSmallHolesDiameter_CorrectValue_ResultCorrectSet()
         {
             //Arrange
-            var expectedValue = 10;
+            var expectedValue = 2;
             var parameter = new CouplingParameters();
 
             //Act
@@ -230,8 +230,8 @@ namespace KompasWrapper.UnitTest
             });
         }
 
-        [TestCase(TestName = "Проверка на введение значения +" +
-                             "CenterHoleDiameter ")]
+        [TestCase(TestName = "Проверка на введение значения " +
+                             "CouplingDiameter ")]
         public void TestSetCouplingDiameter_CorrectValue()
         {
             //Arrange
@@ -245,7 +245,7 @@ namespace KompasWrapper.UnitTest
 
             //Assert
             Assert.AreEqual(parameter.MaxSmallHoleDiameter, (
-                parameter.CouplingDiameter - parameter.CentralHoleDiameter - 10));
+                parameter.CouplingDiameter - parameter.CentralHoleDiameter - 25));
         }
 
         //Максимальный диаметр малых отверстий
@@ -277,6 +277,24 @@ namespace KompasWrapper.UnitTest
                 //Act
                 parameter.MaxSmallHoleDiameter = expectedValue;
             });
+        }
+
+        [TestCase(TestName = "Проверка условия else функции" +
+                             " MatchMaxSmallHoleDiameter")]
+        public void TestElseMatchMaxSmallDiameter_CorrectValue_ReturnValue()
+        {
+            //Arrange
+            var expectedValue = 14.3;
+            var couplingDiameter = 70;
+            var countOfSmallHoles = 8;
+            var parameter = new CouplingParameters();
+
+            //Act
+            parameter.CouplingDiameter = couplingDiameter;
+            parameter.CountOfSmallHoles = countOfSmallHoles;
+
+            //Assert
+            Assert.AreEqual(expectedValue, parameter.MaxSmallHoleDiameter);
         }
     }
 }

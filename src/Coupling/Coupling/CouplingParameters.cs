@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 //TODO: RSDN
 namespace KompasWrapper
 {
@@ -8,6 +9,46 @@ namespace KompasWrapper
     /// </summary>
     public class CouplingParameters
     {
+        /// <summary>
+        /// Минимальный диаметр центрального отверстия
+        /// </summary>
+        public const int MIN_CENTRAL_HOLE_DIAMETER = 10;
+
+        /// <summary>
+        /// Минимальное количество отверстий
+        /// </summary>
+        public const int MIN_COUNT_OF_SMALL_HOLES = 3;
+
+        /// <summary>
+        /// Максимальное количество отверстий 
+        /// </summary>
+        public const int MAX_COUNT_OF_SMALL_HOLES = 8;
+
+        /// <summary>
+        /// Минимальноый диаметр кольца
+        /// </summary>
+        public const double MIN_COUPLING_DIAMETER = 40;
+
+        /// <summary>
+        /// Максимальноый диаметр кольца
+        /// </summary>
+        public const double MAX_COUPLING_DIAMETER = 70;
+
+        /// <summary>
+        /// Минимальная ширина кольца
+        /// </summary>
+        public const double MIN_COUPLING_WIDTH = 10;
+
+        /// <summary>
+        /// Максимальная ширина кольца
+        /// </summary>
+        public const double MAX_COUPLING_WIDTH = 50;
+
+        /// <summary>
+        /// Минимальный диаметр малых отверстий
+        /// </summary>
+        public const int MIN_SMALL_HOLES_DIAMETER = 2;
+
         //TODO:
         /// <summary>
         /// Поле ширины кольца
@@ -17,22 +58,17 @@ namespace KompasWrapper
         /// <summary>
         /// Поле диаметра центрального отверстия
         /// </summary>
-        private double _centralHoleDiameter;
-
-        /// <summary>
-        /// Поле максимально возможного диаметра
-        /// </summary>
-        private double _maxCenterHoleDiameter = 30;
+        private double _centralHoleDiameter = 10;
 
         /// <summary>
         /// Поле количества малых отверстий 
         /// </summary>
-        private int _countOfSmallHoles;
+        private int _countOfSmallHoles = 3;
 
         /// <summary>
         /// Поле диаметра кольца втулочно-пальцевой муфты
         /// </summary>
-        private double _couplingDiameter;
+        private double _couplingDiameter = 40;
 
         /// <summary>
         /// Поле диаметра малых отверстий
@@ -42,7 +78,7 @@ namespace KompasWrapper
         /// <summary>
         /// Поле максимально возможного диаметра малых отверстий
         /// </summary>
-        private double _maxSmallHolesDiameter = 24;
+        private double _maxSmallHolesDiameter = 5;
 
         /// <summary>
         /// Поле диаметра круга, по которому располагаются малые отверстия
@@ -50,44 +86,9 @@ namespace KompasWrapper
         private double _smallHoleCircleDiameter;
 
         /// <summary>
-        /// Поле минимального значения диаметра центрального отверстия
+        /// Поле максимально возможного диаметра
         /// </summary>
-        private double _minCentralHoleDiameter = 10;
-
-        /// <summary>
-        /// Поле минимального количества отверстий
-        /// </summary>
-        private int _minCountOfSmallHoles = 3;
-
-        /// <summary>
-        /// Поле максимального количества отверстий
-        /// </summary>
-        private int _maxCountOfSmallHoles = 8;
-
-        /// <summary>
-        /// Поле минимального диаметра кольца
-        /// </summary>
-        private double _minCouplingDiameter = 40;
-
-        /// <summary>
-        /// Поле максимального диаметра кольца
-        /// </summary>
-        private double _maxCouplingDiameter = 70;
-
-        /// <summary>
-        /// Поле минимальной ширины кольца
-        /// </summary>
-        private double _minCouplingWidth = 10;
-        
-        /// <summary>
-        /// Поле максимальной ширины кольца
-        /// </summary>
-        private double _maxCouplingWidth = 50;
-
-        /// <summary>
-        /// Поле минимального диаметра малых отверстий
-        /// </summary>
-        private double _minSmallHolesDiameter = 6;
+        private double _maxCenterHoleDiameter = 30;
 
         /// <summary>
         /// Диаметр центрального отверстия
@@ -101,20 +102,16 @@ namespace KompasWrapper
             set
             {
                 //TODO:
-                if(value > MaxCenterHoleDiameter || value < MinCentralHoleDiameter)
+                if(value > MaxCenterHoleDiameter || value < MIN_CENTRAL_HOLE_DIAMETER)
                 {
                     throw new ArgumentException("Неверное значение " +
                         "диаметра центрального отверстия = " +
                         $@"{value} мм. Область допустимых значений: " +
-                        $@"{MinCentralHoleDiameter} мм. - {MaxCenterHoleDiameter} мм.");
+                        $@"{MIN_CENTRAL_HOLE_DIAMETER} мм. - {MaxCenterHoleDiameter} мм.");
                 }
-
                 _centralHoleDiameter = value;
 
-                if(CouplingDiameter != 0)
-                {
-                    MaxSmallHoleDiameter = CouplingDiameter - value - 10;
-                }
+                MaxSmallHoleDiameter = MatchMaxSmallHoleDiameter();
 
                 SmallHoleCircleDiameter = (value + CouplingDiameter) / 2;
             } 
@@ -132,16 +129,42 @@ namespace KompasWrapper
             set 
             {
                 //TODO:
-                if (value > MaxCountOfSmallHoles || value < MinCountOfSmallHoles)
+                if (value > MAX_COUNT_OF_SMALL_HOLES || value < MIN_COUNT_OF_SMALL_HOLES)
                 {
                     throw new ArgumentException(
                         $@"Неверное значение = {value} шт. 
-                        Область допустимых значений: {MinCountOfSmallHoles} шт
-                        - {MaxCountOfSmallHoles} шт!");
+                        Область допустимых значений: {MIN_COUNT_OF_SMALL_HOLES} шт
+                        - {MAX_COUNT_OF_SMALL_HOLES} шт!");
                 }
-
                 _countOfSmallHoles = value;
+
+                MaxSmallHoleDiameter = MatchMaxSmallHoleDiameter();
+
             } 
+        }
+
+        /// <summary>
+        /// Вычисляет максимальный диаметр малых отверстий
+        /// </summary>
+        /// <returns>Максимальный диаметр малых отверстий</returns>
+        private double MatchMaxSmallHoleDiameter()
+        {
+            double maxSmallDiameterFromCoupling 
+                = (CouplingDiameter - 20 - CentralHoleDiameter) / 2;
+
+            double smallHoleCircleDiameterLength = SmallHoleCircleDiameter * Math.PI;
+            double maxSmallDiameterFromCount;
+
+            maxSmallDiameterFromCount = smallHoleCircleDiameterLength / CountOfSmallHoles / 1.1;
+
+            if (maxSmallDiameterFromCoupling < maxSmallDiameterFromCount)
+            {
+                return Math.Round(maxSmallDiameterFromCoupling, 1);
+            }
+            else
+            {
+                return Math.Round(maxSmallDiameterFromCount, 1);
+            }
         }
 
         /// <summary>
@@ -156,12 +179,12 @@ namespace KompasWrapper
             set 
             {
                 //TODO:
-                if (value > MaxCouplingDiameter || value < MinCouplingDiameter)
+                if (value > MAX_COUPLING_DIAMETER || value < MIN_COUPLING_DIAMETER)
                 {
                     throw new ArgumentException("Неверное значение " +
                         "диаметра кольца = " +
                         $@"{value} мм. Область допустимых значений: " +
-                        $@"{MinCouplingDiameter} мм. - {MaxCouplingDiameter} мм.");
+                        $@"{MIN_COUPLING_DIAMETER} мм. - {MAX_COUPLING_DIAMETER} мм.");
                 }
                 _couplingDiameter = value;
 
@@ -169,7 +192,7 @@ namespace KompasWrapper
 
                 MaxCenterHoleDiameter = Math.Round(value / (7/3), 1);
 
-                MaxSmallHoleDiameter = value - 10 - MaxCenterHoleDiameter;
+                MaxSmallHoleDiameter = MatchMaxSmallHoleDiameter();
             }
         }
 
@@ -185,12 +208,12 @@ namespace KompasWrapper
             set 
             {
                 //TODO:
-                if (value > MaxCouplingWidth || value < MinCouplingWidth)
+                if (value > MAX_COUPLING_WIDTH || value < MIN_COUPLING_WIDTH)
                 {
                     throw new ArgumentException("Неверное значение " +
                         "ширины кольца = " +
                         $@"{value} мм. Область допустимых значений: " +
-                        $@"{MinCouplingWidth} мм. - {MaxCouplingWidth} мм.");
+                        $@"{MIN_COUPLING_WIDTH} мм. - {MAX_COUPLING_WIDTH} мм.");
                 }
 
                 _couplingWidth = value;
@@ -208,15 +231,32 @@ namespace KompasWrapper
             }
             set 
             {
-                if (value > MaxSmallHoleDiameter || value < MinSmallHolesDiameter)
+                if (value > MaxSmallHoleDiameter || value < MIN_SMALL_HOLES_DIAMETER)
                 {
                     throw new ArgumentException("Неверное значение " +
                         "диаметра малых отверстий = " +
                         $@"{value} мм. Область допустимых значений: " +
-                        $@"{MinSmallHolesDiameter} мм. - {MaxSmallHoleDiameter} мм.");
+                        $@"{MIN_SMALL_HOLES_DIAMETER} мм. - {MaxSmallHoleDiameter} мм.");
                 }
                 _smallHolesDiameter = value;
+            }
+        }
 
+        /// <summary>
+        /// Максимальный диаметр центрального отверстия
+        /// </summary>
+        public double MaxCenterHoleDiameter
+        {
+            get
+            {
+                return _maxCenterHoleDiameter;
+            }
+            set
+            {
+                if (ArgumentException(value))
+                {
+                    _maxCenterHoleDiameter = value;
+                }
             }
         }
 
@@ -238,23 +278,6 @@ namespace KompasWrapper
             }
         }
 
-        /// <summary>
-        /// Максимальный диаметр центрального отверстия
-        /// </summary>
-        public double MaxCenterHoleDiameter
-        {
-            get
-            {
-                return _maxCenterHoleDiameter;
-            }
-            set
-            {
-                if (ArgumentException(value))
-                {
-                    _maxCenterHoleDiameter = value;
-                }
-            }
-        }
 
         /// <summary>
         /// Максимально возможный диаметр малых отверстий
@@ -288,79 +311,15 @@ namespace KompasWrapper
         }
 
         /// <summary>
-        /// Минимальный диаметр центрального отверстия
-        /// </summary>
-        private double MinCentralHoleDiameter
-        {
-            get => _minCentralHoleDiameter;
-        }
-
-        /// <summary>
-        /// Минимальное количество малых отверстий
-        /// </summary>
-        private int MinCountOfSmallHoles
-        {
-            get => _minCountOfSmallHoles;
-        }
-
-        /// <summary>
-        /// Максимальное количество малых отверстий
-        /// </summary>
-        private int MaxCountOfSmallHoles
-        {
-            get => _maxCountOfSmallHoles;
-        }
-
-        /// <summary>
-        /// Минимальное значение диаметра цольца
-        /// </summary>
-        private double MinCouplingDiameter
-        {
-            get => _minCouplingDiameter;
-        }
-
-        /// <summary>
-        /// Максимальное значение диаметра кольца
-        /// </summary>
-        private double MaxCouplingDiameter
-        {
-            get => _maxCouplingDiameter;
-        }
-
-        /// <summary>
-        /// Минимальное значение толщины кольца
-        /// </summary>
-        private double MinCouplingWidth
-        {
-            get => _minCouplingWidth;
-        }
-
-        /// <summary>
-        /// Максимальное значение толщины кольца
-        /// </summary>
-        private double MaxCouplingWidth
-        {
-            get => _maxCouplingWidth;
-        }
-
-        /// <summary>
-        /// Минимальное значение диаметра малых отверстий
-        /// </summary>
-        private double MinSmallHolesDiameter
-        {
-            get => _minSmallHolesDiameter;
-        }
-
-        /// <summary>
         /// Конструктор класса
         /// </summary>
         public CouplingParameters()
         {
-            _countOfSmallHoles = 3;
-            _smallHolesDiameter = 6;
-            _centralHoleDiameter = 10;
-            _couplingDiameter = 40;
-            _couplingWidth = 10;
+            CouplingDiameter = 40;
+            CentralHoleDiameter = 10;
+            SmallHolesDiameter = 2;
+            CountOfSmallHoles = 3;
+            CouplingWidth = 10;
         }
     }
 }

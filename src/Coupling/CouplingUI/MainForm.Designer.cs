@@ -118,7 +118,7 @@
             this.smallHolesDiameterTextBox.Name = "smallHolesDiameterTextBox";
             this.smallHolesDiameterTextBox.Size = new System.Drawing.Size(36, 20);
             this.smallHolesDiameterTextBox.TabIndex = 8;
-            this.smallHolesDiameterTextBox.Text = "6";
+            this.smallHolesDiameterTextBox.Text = "2";
             this.smallHolesDiameterTextBox.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // couplingWidthTextBox
