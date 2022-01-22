@@ -2,6 +2,10 @@
 using System.Drawing;
 using System.Windows.Forms;
 using KompasWrapper;
+using System.IO;
+using System.Diagnostics;
+using Coupling;
+using Microsoft.VisualBasic.Devices;
 
 namespace CouplingUI
 {
@@ -14,16 +18,18 @@ namespace CouplingUI
         /// <summary>
         /// Поле параметров
         /// </summary>
-        CouplingParameters _couplingParameters;
+        private readonly CouplingParameters _couplingParameters;
 
         public MainForm()
         {
             InitializeComponent();
-            _couplingParameters = new CouplingParameters();
+            _couplingParameters = SettingManager.LoadFile(SettingManager._directoryPath);
 
-            
-            countOfSmallHolesComboBox.SelectedIndex = 0;
-            _couplingParameters.CountOfSmallHoles = 3;
+            couplingDiameterTextBox.Text = Convert.ToString(_couplingParameters.CouplingDiameter);
+            centralHoleDiameterTextBox.Text = Convert.ToString(_couplingParameters.CentralHoleDiameter);
+            smallHolesDiameterTextBox.Text = Convert.ToString(_couplingParameters.SmallHolesDiameter);
+            couplingWidthTextBox.Text = Convert.ToString(_couplingParameters.CouplingWidth);
+            countOfSmallHolesComboBox.Text = Convert.ToString(_couplingParameters.CountOfSmallHoles);
 
             centralHoleDiameterLabel.Text = 
                 ChangeTextLabel(CouplingParameters.MIN_CENTRAL_HOLE_DIAMETER,
@@ -35,11 +41,11 @@ namespace CouplingUI
 
         //TODO: RSDN
         /// <summary>
-        /// Построить
+        /// Событие, при нажатии на кнопку "Build".
         /// </summary>
         /// <param name="sender">Объект, который вызвал метод</param>
-        /// <param name="e"></param>
-        private void buildButton_Click(object sender, EventArgs e)
+        /// <param name="e">Передает объект, относящийся к обрабатываемому событию.</param>
+        private void BuildButtonClick(object sender, EventArgs e)
         {
             Control thisTextBox = null;
             try
@@ -70,16 +76,20 @@ namespace CouplingUI
             var couplingBuilder = new CouplingBuilder();
             couplingBuilder.CreateModel(_couplingParameters);
 
+            SettingManager.SaveFile(_couplingParameters, SettingManager._directoryPath);
+
             buildButton.Enabled = true;
+
+            //StressTesting();
         }
 
         //TODO: RSDN
         /// <summary>
-        /// Запись параметров в обьект CouplingParameters
+        /// Событие, при выходе с TextBox.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">Передает объект, относящийся к обрабатываемому событию.</param>
         /// <param name="sender">Объект, который вызвал метод</param>
-        private void textBox_Leave(object sender, EventArgs e)
+        private void TextBoxLeave(object sender, EventArgs e)
         {
             try
             {
@@ -99,11 +109,11 @@ namespace CouplingUI
 
         //TODO: RSDN
         /// <summary>
-        /// Выход из Combobox и внесение данных в параметры
+        /// Событие, при выходе из ComboBox.
         /// </summary>
         /// <param name="sender">Объект, который вызвал метод</param>
-        /// <param name="e"></param>
-        private void countOfSmallHolesComboBox_Leave(object sender, EventArgs e)
+        /// <param name="e">Передает объект, относящийся к обрабатываемому событию.</param>
+        private void CountOfSmallHolesComboBoxLeave(object sender, EventArgs e)
         {
             try
             {
@@ -188,6 +198,30 @@ namespace CouplingUI
             ((TextBox)sender).Focus();
             ((TextBox)sender).BackColor = Color.MistyRose;
             ((TextBox)sender).ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        /// Нагрузочное тестирование
+        /// </summary>
+        private void StressTesting()
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var builder = new CouplingBuilder();
+
+            int countModel = 0;
+            using (StreamWriter writer = new StreamWriter("C:/TestSAPR/log.txt", true))
+            {
+                while (true)
+                {
+                    builder.CreateModel(_couplingParameters);
+                    var computerInfo = new ComputerInfo();
+                    var usedMemory = computerInfo.TotalPhysicalMemory - computerInfo.AvailablePhysicalMemory;
+                    countModel++;
+                    writer.WriteLineAsync($"{countModel}\t{stopWatch.ElapsedMilliseconds}\t{usedMemory}");
+                    writer.Flush();
+                }
+            }
         }
     }
 }

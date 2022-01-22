@@ -10,7 +10,6 @@ namespace KompasWrapper.UnitTest
     public class CouplingParametersTest
     {
         //TODO:
-        //Центральное отверстие
         [TestCase(TestName = "Проверка геттера и сеттера у диаметра центрального отверстия")]
         public void TestSetCentralHoleDiameter_CorrectValue_ResultCorrectSet()
         {
@@ -42,7 +41,6 @@ namespace KompasWrapper.UnitTest
             });
         }
 
-        // Количество отверстий
         [TestCase(TestName = "Проверка геттера и сеттера у количества отверстий")]
         public void TestSetCountOfSmallHoles_CorrectValue_ResultCorrectSet()
         {
@@ -74,7 +72,6 @@ namespace KompasWrapper.UnitTest
             });
         }
 
-        // Диаметр детали
         [TestCase(TestName = "Проверка геттера и сеттера у главного диаметра")]
         public void TestSetCouplingDiameter_CorrectValue_ResultCorrectSet()
         {
@@ -106,7 +103,6 @@ namespace KompasWrapper.UnitTest
             });
         }
 
-        // Ширина кольца
         [TestCase(TestName = "Проверка геттера и сеттера у главного диаметра")]
         public void TestSetCouplingWidth_CorrectValue_ResultCorrectSet()
         {
@@ -136,7 +132,6 @@ namespace KompasWrapper.UnitTest
             });
         }
 
-        //Диаметр малых отверстий 
         [TestCase(TestName = "Проверка геттера и сеттера у диаметра малых отвертий")]
         public void TestSetSmallHolesDiameter_CorrectValue_ResultCorrectSet()
         {
@@ -168,7 +163,6 @@ namespace KompasWrapper.UnitTest
             });
         }
 
-        //Окружность по которой располагаются малые отверстия
         [TestCase(TestName = "Проверка геттера и сеттера у SmallHoleCircleDiameter")]
         public void TestSetSmallHoleCircleDiameter_CorrectValue_ResultCorrectSet()
         {
@@ -199,7 +193,6 @@ namespace KompasWrapper.UnitTest
             });
         }
 
-        //Максимальный диаметр центрального отверстия
         [TestCase(TestName = "Проверка геттера и сеттера у MaxCenterHoleDiameter")]
         public void TestSetMaxCenterHoleDiameter_CorrectValue_ResultCorrectSet()
         {
@@ -248,7 +241,6 @@ namespace KompasWrapper.UnitTest
                 parameter.CouplingDiameter - parameter.CentralHoleDiameter - 25));
         }
 
-        //Максимальный диаметр малых отверстий
         [TestCase(TestName = "Проверка геттера и сеттера у MaxSmallHoleDiameter")]
         public void TestSetMaxSmallHoleDiameter_CorrectValue_ResultCorrectSet()
         {

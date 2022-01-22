@@ -99,8 +99,7 @@
             this.centralHoleDiameterTextBox.Name = "centralHoleDiameterTextBox";
             this.centralHoleDiameterTextBox.Size = new System.Drawing.Size(36, 20);
             this.centralHoleDiameterTextBox.TabIndex = 6;
-            this.centralHoleDiameterTextBox.Text = "10";
-            this.centralHoleDiameterTextBox.Leave += new System.EventHandler(this.textBox_Leave);
+            this.centralHoleDiameterTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // couplingDiameterTextBox
             // 
@@ -108,8 +107,7 @@
             this.couplingDiameterTextBox.Name = "couplingDiameterTextBox";
             this.couplingDiameterTextBox.Size = new System.Drawing.Size(36, 20);
             this.couplingDiameterTextBox.TabIndex = 7;
-            this.couplingDiameterTextBox.Text = "40";
-            this.couplingDiameterTextBox.Leave += new System.EventHandler(this.textBox_Leave);
+            this.couplingDiameterTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // smallHolesDiameterTextBox
             // 
@@ -118,8 +116,7 @@
             this.smallHolesDiameterTextBox.Name = "smallHolesDiameterTextBox";
             this.smallHolesDiameterTextBox.Size = new System.Drawing.Size(36, 20);
             this.smallHolesDiameterTextBox.TabIndex = 8;
-            this.smallHolesDiameterTextBox.Text = "2";
-            this.smallHolesDiameterTextBox.Leave += new System.EventHandler(this.textBox_Leave);
+            this.smallHolesDiameterTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // couplingWidthTextBox
             // 
@@ -127,8 +124,7 @@
             this.couplingWidthTextBox.Name = "couplingWidthTextBox";
             this.couplingWidthTextBox.Size = new System.Drawing.Size(36, 20);
             this.couplingWidthTextBox.TabIndex = 9;
-            this.couplingWidthTextBox.Text = "10";
-            this.couplingWidthTextBox.Leave += new System.EventHandler(this.textBox_Leave);
+            this.couplingWidthTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label6
             // 
@@ -147,7 +143,7 @@
             this.buildButton.TabIndex = 12;
             this.buildButton.Text = "Построить";
             this.buildButton.UseVisualStyleBackColor = true;
-            this.buildButton.Click += new System.EventHandler(this.buildButton_Click);
+            this.buildButton.Click += new System.EventHandler(this.BuildButtonClick);
             // 
             // smallHolesDiameterLabel
             // 
@@ -200,7 +196,7 @@
             this.countOfSmallHolesComboBox.Name = "countOfSmallHolesComboBox";
             this.countOfSmallHolesComboBox.Size = new System.Drawing.Size(36, 21);
             this.countOfSmallHolesComboBox.TabIndex = 18;
-            this.countOfSmallHolesComboBox.Leave += new System.EventHandler(this.countOfSmallHolesComboBox_Leave);
+            this.countOfSmallHolesComboBox.Leave += new System.EventHandler(this.CountOfSmallHolesComboBoxLeave);
             // 
             // groupBox1
             // 

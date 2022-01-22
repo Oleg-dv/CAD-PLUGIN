@@ -50,9 +50,16 @@
   <ItemGroup>
     <Compile Include="CouplingParametersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingManagerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestData\UncorrectCouplingParameters.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CorrectCouplingParameters.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Coupling\Coupling.csproj">
@@ -60,6 +67,7 @@
       <Name>Coupling</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
