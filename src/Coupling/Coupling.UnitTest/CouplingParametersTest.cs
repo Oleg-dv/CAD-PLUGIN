@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace KompasWrapper.UnitTest
 {
@@ -279,14 +280,48 @@ namespace KompasWrapper.UnitTest
             var expectedValue = 14.3;
             var couplingDiameter = 70;
             var countOfSmallHoles = 8;
+            var parameters = new CouplingParameters();
+
+            //Act
+            parameters.CouplingDiameter = couplingDiameter;
+            parameters.CountOfSmallHoles = countOfSmallHoles;
+
+            //Assert
+            Assert.AreEqual(expectedValue, parameters.MaxSmallHoleDiameter);
+        }
+
+        [TestCase(true, true, TestName = "Equals с самим собой, позитив")]
+        [TestCase(false, true, TestName = "Equals с другими параметрами, позитив")]
+        [TestCase(true, false, TestName = "Equals, негатив")]
+        public void TestEquals(bool sameParameters, bool equal)
+        {
+            //Arrange
+            var expectedValue = equal;
+            var parameter = new CouplingParameters();
+            var comparisonParameter = new CouplingParameters();
+            if (!equal) comparisonParameter.CouplingWidth = 50;
+
+            //Act
+            var assertedValue = sameParameters
+                ? parameter.Equals(comparisonParameter)
+                : parameter.Equals(parameter);
+
+            //Assert
+            Assert.AreEqual(expectedValue, assertedValue);
+        }
+
+        [TestCase(TestName = "Equals с null")]
+        public void TestEqualsWithNull()
+        {
+            //Arrange
+            var expectedValue = false;
             var parameter = new CouplingParameters();
 
             //Act
-            parameter.CouplingDiameter = couplingDiameter;
-            parameter.CountOfSmallHoles = countOfSmallHoles;
+            var assertedValue = parameter.Equals(null);
 
             //Assert
-            Assert.AreEqual(expectedValue, parameter.MaxSmallHoleDiameter);
+            Assert.AreEqual(expectedValue, assertedValue);
         }
     }
 }

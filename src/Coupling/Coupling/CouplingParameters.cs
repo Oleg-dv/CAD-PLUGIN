@@ -356,29 +356,5 @@ namespace KompasWrapper
                    && _smallHoleCircleDiameter.Equals(other._smallHoleCircleDiameter) 
                    && _maxCenterHoleDiameter.Equals(other._maxCenterHoleDiameter);
         }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((CouplingParameters) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hashCode = _couplingWidth.GetHashCode();
-                hashCode = (hashCode * 397) ^ _centralHoleDiameter.GetHashCode();
-                hashCode = (hashCode * 397) ^ _countOfSmallHoles;
-                hashCode = (hashCode * 397) ^ _couplingDiameter.GetHashCode();
-                hashCode = (hashCode * 397) ^ _smallHolesDiameter.GetHashCode();
-                hashCode = (hashCode * 397) ^ _maxSmallHolesDiameter.GetHashCode();
-                hashCode = (hashCode * 397) ^ _smallHoleCircleDiameter.GetHashCode();
-                hashCode = (hashCode * 397) ^ _maxCenterHoleDiameter.GetHashCode();
-                return hashCode;
-            }
-        }
     }
 }

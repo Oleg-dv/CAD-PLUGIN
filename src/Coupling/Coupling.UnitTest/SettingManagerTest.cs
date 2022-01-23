@@ -20,6 +20,7 @@ namespace Coupling.UnitTest
         {
             // Setup
             var expectedParameters = new CouplingParameters();
+            expectedParameters.CouplingDiameter = 50.0;
 
             // Act
             var actualParameters = SettingManager.LoadFile(CorrectCouplingParametersPath);
@@ -28,7 +29,7 @@ namespace Coupling.UnitTest
             Assert.AreEqual(expectedParameters, actualParameters);
         }
 
-        [TestCase(@"TestData\UncorrectGuideParameters.json", TestName = "Загрузка параметров, исключение")]
+        [TestCase(@"TestData\UncorrectCouplingParameters.json", TestName = "Загрузка параметров, исключение")]
         [TestCase(@"TestData\Null.json", TestName = "Загрузка параметров, файл не существует")]
         public void SettingManager_LoadTest_Exception(string path)
         {
@@ -42,10 +43,11 @@ namespace Coupling.UnitTest
         }
 
         [TestCase(TestName = "Сохранение параметров, позитив")]
-        public void FileManager_SaveTest_Positive()
+        public void SettingManager_SaveTest_Positive()
         {
             //Setup
             var savingParameters = new CouplingParameters();
+            savingParameters.CouplingDiameter = 50.0;
 
             DirectoryInfo directoryInfo = new DirectoryInfo(@"Output");
 
@@ -63,5 +65,7 @@ namespace Coupling.UnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
+
     }
 }

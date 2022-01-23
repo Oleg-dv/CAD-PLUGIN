@@ -9,14 +9,28 @@ using KompasWrapper;
 
 namespace Coupling
 {
+    /// <summary>
+    /// Класс для сохранения/загрузки настроек
+    /// </summary>
     public static class SettingManager
     {
+        /// <summary>
+        /// Пусть сохранения настроек
+        /// </summary>
         public static readonly string _directoryPath =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
             + @"\Coupling";
 
+        /// <summary>
+        /// Имя файла с настройками
+        /// </summary>
         public static readonly string _fileName = "CouplingParameters.json";
 
+        /// <summary>
+        /// Сохранения настроек
+        /// </summary>
+        /// <param name="couplingParameters">Параметры кольца</param>
+        /// <param name="path">Путь к файлу</param>
         public static void SaveFile(CouplingParameters couplingParameters, string path)
         {
             var directoryInfo = new DirectoryInfo(path);
@@ -33,23 +47,36 @@ namespace Coupling
             }
         }
 
+        /// <summary>
+        /// Метод для загрузки настроек
+        /// </summary>
+        /// <param name="path">Путь к файлу</param>
+        /// <returns>Настройки</returns>
         public static CouplingParameters LoadFile(string path)
         {
-            if (!File.Exists(Path.Combine(path, _fileName)))
+            if (!File.Exists(path))
             {
                 return new CouplingParameters();
             }
 
             string parameters;
 
-            using (StreamReader reader = new StreamReader(Path.Combine(path, _fileName)))
+            using (StreamReader reader = new StreamReader(path))
             {
                 parameters = reader.ReadToEnd();
             }
 
-            var couplingParameters = JsonConvert.DeserializeObject<CouplingParameters>(parameters);
+            try
+            {
+                var couplingParameters 
+                    = JsonConvert.DeserializeObject<CouplingParameters>(parameters);
 
-            return couplingParameters;
+                return couplingParameters;
+            }
+            catch
+            {
+                return new CouplingParameters();
+            }
         }
     }
 }
