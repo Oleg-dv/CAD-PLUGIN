@@ -1,5 +1,6 @@
 ﻿using System;
 
+//TODO: naming
 namespace KompasWrapper
 {
     /// <summary>
@@ -203,24 +204,23 @@ namespace KompasWrapper
         /// </summary>
         public double CouplingWidth 
         { 
-            get 
-            {
-                return _couplingWidth;    
-            } 
-            set 
+            get => _couplingWidth;
+            set
             {
                 //TODO: дубль
-                if (value > MAX_COUPLING_WIDTH || value < MIN_COUPLING_WIDTH)
+                if (!(value > MAX_COUPLING_WIDTH) && !(value < MIN_COUPLING_WIDTH))
                 {
-                    string parameterName = "ширины кольца";
-                    string unit = "мм.";
-
-                    ExceptionMessage(parameterName, value,
-                        MIN_COUPLING_WIDTH,
-                        MAX_COUPLING_WIDTH, unit);
+                    _couplingWidth = value;
+                    return;
                 }
+                
+                string parameterName = "ширины кольца";
+                string unit = "мм.";
 
-                _couplingWidth = value;
+                ExceptionMessage(parameterName, value,
+                    MIN_COUPLING_WIDTH,
+                    MAX_COUPLING_WIDTH, unit);
+
             }
         }
 
@@ -303,6 +303,7 @@ namespace KompasWrapper
             }
         }
 
+        //TODO: naming
         /// <summary>
         /// Исключение
         /// </summary>
@@ -343,6 +344,7 @@ namespace KompasWrapper
             CouplingWidth = 10;
         }
 
+        //TODO: XML
         public bool Equals(CouplingParameters other)
         {
             if (ReferenceEquals(null, other)) return false;

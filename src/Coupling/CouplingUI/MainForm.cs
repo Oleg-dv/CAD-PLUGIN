@@ -14,7 +14,6 @@ namespace CouplingUI
     /// </summary>
     public partial class MainForm : Form
     {
-        //TODO: RSDN
         /// <summary>
         /// Поле параметров
         /// </summary>
@@ -38,8 +37,7 @@ namespace CouplingUI
                 ChangeTextLabel(CouplingParameters.MIN_SMALL_HOLES_DIAMETER,
                     _couplingParameters.MaxSmallHoleDiameter);
         }
-
-        //TODO: RSDN
+        
         /// <summary>
         /// Событие, при нажатии на кнопку "Build".
         /// </summary>
@@ -82,8 +80,7 @@ namespace CouplingUI
 
             //StressTesting();
         }
-
-        //TODO: RSDN
+        
         /// <summary>
         /// Событие, при выходе с TextBox.
         /// </summary>
@@ -106,8 +103,7 @@ namespace CouplingUI
                 ShowMessage(sender, exception.Message);
             }
         }
-
-        //TODO: RSDN
+        
         /// <summary>
         /// Событие, при выходе из ComboBox.
         /// </summary>

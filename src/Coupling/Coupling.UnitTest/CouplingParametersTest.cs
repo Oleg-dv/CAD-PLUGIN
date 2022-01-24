@@ -10,7 +10,6 @@ namespace KompasWrapper.UnitTest
 {
     public class CouplingParametersTest
     {
-        //TODO:
         [TestCase(TestName = "Проверка геттера и сеттера у диаметра центрального отверстия")]
         public void TestSetCentralHoleDiameter_CorrectValue_ResultCorrectSet()
         {

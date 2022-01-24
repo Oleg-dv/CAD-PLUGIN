@@ -109,8 +109,8 @@ namespace KompasWrapper
         /// Отрисовка круга
         /// </summary>
         /// <param name="diameter">Диаметр</param>
-        /// <param name="xc"></param>
-        /// <param name="yc"></param>
+        /// <param name="xc">//TODO:</param>
+        /// <param name="yc">//TODO:</param>
         public void CreateCircle(double diameter, double xc = 0, double yc = 0)
         {
             _currentPlan = (ksEntity)_part.GetDefaultEntity((short)1);

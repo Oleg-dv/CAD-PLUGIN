@@ -14,6 +14,7 @@ namespace Coupling
     /// </summary>
     public static class SettingManager
     {
+        //TODO: RSDN
         /// <summary>
         /// Пусть сохранения настроек
         /// </summary>
@@ -21,6 +22,7 @@ namespace Coupling
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
             + @"\Coupling";
 
+        //TODO: RSDN
         /// <summary>
         /// Имя файла с настройками
         /// </summary>
