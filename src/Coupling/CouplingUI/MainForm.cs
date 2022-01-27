@@ -19,10 +19,14 @@ namespace CouplingUI
         /// </summary>
         private readonly CouplingParameters _couplingParameters;
 
+
+
         public MainForm()
         {
             InitializeComponent();
-            _couplingParameters = SettingManager.LoadFile(SettingManager._directoryPath);
+            _couplingParameters 
+                = SettingManager.LoadFile(SettingManager.DirectoryPath 
+                                                          + SettingManager.FileName);
 
             couplingDiameterTextBox.Text = Convert.ToString(_couplingParameters.CouplingDiameter);
             centralHoleDiameterTextBox.Text = Convert.ToString(_couplingParameters.CentralHoleDiameter);
@@ -74,7 +78,7 @@ namespace CouplingUI
             var couplingBuilder = new CouplingBuilder();
             couplingBuilder.CreateModel(_couplingParameters);
 
-            SettingManager.SaveFile(_couplingParameters, SettingManager._directoryPath);
+            SettingManager.SaveFile(_couplingParameters, SettingManager.DirectoryPath);
 
             buildButton.Enabled = true;
 

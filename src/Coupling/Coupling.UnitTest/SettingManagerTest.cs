@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KompasWrapper;
+﻿using KompasWrapper;
 using NUnit.Framework;
 using System.IO;
-
 
 namespace Coupling.UnitTest
 {
@@ -70,7 +64,5 @@ namespace Coupling.UnitTest
 
             Assert.AreEqual(expected, actual);
         }
-
-
     }
 }

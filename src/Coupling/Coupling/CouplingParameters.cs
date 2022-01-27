@@ -1,7 +1,6 @@
 ﻿using System;
 
-//TODO: naming
-namespace KompasWrapper
+namespace Coupling
 {
     /// <summary>
     /// Класс параметров кольца втулочно пальцевой муфты.
@@ -99,17 +98,14 @@ namespace KompasWrapper
             }
             set
             {
-                //TODO: дубль
-                if (value > MAX_COUPLING_DIAMETER || value < MIN_COUPLING_DIAMETER)
-                {
-                    string parameterName = "диаметра кольца";
-                    string unit = "мм.";
+                //TODO: дубль+
 
-                    ExceptionMessage(parameterName, value,
-                        MIN_COUPLING_DIAMETER,
-                        MAX_COUPLING_DIAMETER, unit);
-                }
-                _couplingDiameter = value;
+                string parameterName = "диаметра кольца";
+                string unit = "мм.";
+
+                _couplingDiameter 
+                    = ValidateValue(MIN_COUPLING_DIAMETER, MAX_COUPLING_DIAMETER,
+                    value, parameterName, unit);
 
                 SmallHoleCircleDiameter = (value + CentralHoleDiameter) / 2;
 
@@ -130,16 +126,14 @@ namespace KompasWrapper
             }
             set
             {
-                //TODO: дубль
-                if(value > MaxCenterHoleDiameter || value < MIN_CENTRAL_HOLE_DIAMETER)
-                {
-                    string parameterName = "центрального отверстия";
-                    string unit = "мм.";
+                //TODO: дубль+
 
-                    ExceptionMessage(parameterName, value,
-                        MIN_CENTRAL_HOLE_DIAMETER, MaxCenterHoleDiameter, unit);
-                }
-                _centralHoleDiameter = value;
+                string parameterName = "центрального отверстия";
+                string unit = "мм.";
+
+                _centralHoleDiameter 
+                    = ValidateValue(MIN_CENTRAL_HOLE_DIAMETER, MaxCenterHoleDiameter,
+                        value, parameterName, unit);
 
                 MaxSmallHoleDiameter = MatchMaxSmallHoleDiameter();
 
@@ -158,17 +152,15 @@ namespace KompasWrapper
             } 
             set 
             {
-                //TODO: дубль
-                if (value > MAX_COUNT_OF_SMALL_HOLES || value < MIN_COUNT_OF_SMALL_HOLES)
-                {
-                    string parameterName = "количества малых отверстий";
-                    string unit = "шт.";
+                //TODO: дубль+
 
-                    ExceptionMessage(parameterName, value, 
+                string parameterName = "количества малых отверстий";
+                string unit = "шт.";
+
+                _countOfSmallHoles
+                    = Convert.ToInt32(ValidateValue(MIN_COUNT_OF_SMALL_HOLES,
                         MAX_COUNT_OF_SMALL_HOLES,
-                        MIN_COUNT_OF_SMALL_HOLES, unit);
-                }
-                _countOfSmallHoles = value;
+                        value, parameterName, unit));
 
                 MaxSmallHoleDiameter = MatchMaxSmallHoleDiameter();
 
@@ -193,10 +185,8 @@ namespace KompasWrapper
             {
                 return Math.Round(maxSmallDiameterFromCoupling, 1);
             }
-            else
-            {
-                return Math.Round(maxSmallDiameterFromCount, 1);
-            }
+
+            return Math.Round(maxSmallDiameterFromCount, 1);
         }
 
         /// <summary>
@@ -207,20 +197,14 @@ namespace KompasWrapper
             get => _couplingWidth;
             set
             {
-                //TODO: дубль
-                if (!(value > MAX_COUPLING_WIDTH) && !(value < MIN_COUPLING_WIDTH))
-                {
-                    _couplingWidth = value;
-                    return;
-                }
-                
+                //TODO: дубль+
+
                 string parameterName = "ширины кольца";
                 string unit = "мм.";
 
-                ExceptionMessage(parameterName, value,
-                    MIN_COUPLING_WIDTH,
-                    MAX_COUPLING_WIDTH, unit);
-
+                _couplingWidth 
+                    = ValidateValue(MIN_COUPLING_WIDTH, MAX_COUPLING_WIDTH,
+                    value, parameterName, unit);
             }
         }
 
@@ -235,18 +219,26 @@ namespace KompasWrapper
             }
             set 
             {
-                //TODO: дубль
-                if (value > MaxSmallHoleDiameter || value < MIN_SMALL_HOLES_DIAMETER)
-                {
-                    string parameterName = "диаметра малых отверстий";
-                    string unit = "мм.";
+                //TODO: дубль+
 
-                    ExceptionMessage(parameterName, value,
-                        MIN_SMALL_HOLES_DIAMETER,
-                        MaxSmallHoleDiameter, unit);
-                }
-                _smallHolesDiameter = value;
+                string parameterName = "диаметра малых отверстий";
+                string unit = "мм.";
+
+                _smallHolesDiameter 
+                    = ValidateValue(MIN_SMALL_HOLES_DIAMETER, MaxSmallHoleDiameter,
+                    value, parameterName, unit);
             }
+        }
+
+        public double ValidateValue(double min, double max, double value,
+            string parameterName, string unit)
+        {
+            if (value > max || value < min)
+            {
+                ExceptionMessage(parameterName, value, min, max, unit);
+            }
+
+            return value;
         }
 
         /// <summary>
@@ -260,7 +252,7 @@ namespace KompasWrapper
             }
             set
             {
-                if (ArgumentException(value))
+                if (ValueGreaterZero(value))
                 {
                     _maxCenterHoleDiameter = value;
                 }
@@ -278,7 +270,7 @@ namespace KompasWrapper
             }
             set
             {
-                if (ArgumentException(value))
+                if (ValueGreaterZero(value))
                 {
                     _smallHoleCircleDiameter = value;
                 }
@@ -296,18 +288,18 @@ namespace KompasWrapper
             }
             set
             {
-                if (ArgumentException(value))
+                if (ValueGreaterZero(value))
                 {
                     _maxSmallHolesDiameter = value;
                 }
             }
         }
 
-        //TODO: naming
+        //TODO: naming+
         /// <summary>
         /// Исключение
         /// </summary>
-        private static bool ArgumentException(double value)
+        private static bool ValueGreaterZero(double value)
         {
             if (value < 0)
             {
@@ -344,7 +336,12 @@ namespace KompasWrapper
             CouplingWidth = 10;
         }
 
-        //TODO: XML
+        //TODO: XML+
+        /// <summary>
+        /// Метод для сравнения двух объектов с параметрами
+        /// </summary>
+        /// <param name="other">Объект для сравнения</param>
+        /// <returns>True or False</returns>
         public bool Equals(CouplingParameters other)
         {
             if (ReferenceEquals(null, other)) return false;

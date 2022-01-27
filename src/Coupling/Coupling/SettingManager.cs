@@ -14,19 +14,18 @@ namespace Coupling
     /// </summary>
     public static class SettingManager
     {
-        //TODO: RSDN
-        /// <summary>
-        /// Пусть сохранения настроек
-        /// </summary>
-        public static readonly string _directoryPath =
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-            + @"\Coupling";
-
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// Имя файла с настройками
         /// </summary>
-        public static readonly string _fileName = "CouplingParameters.json";
+        public static readonly string FileName = "CouplingParameters.json";
+
+        /// <summary>
+        /// Пусть сохранения настроек
+        /// </summary>
+        public static readonly string DirectoryPath =
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+            + @"\Coupling\";
 
         /// <summary>
         /// Сохранения настроек
@@ -43,7 +42,7 @@ namespace Coupling
 
             string parameters = JsonConvert.SerializeObject(couplingParameters);
 
-            using (StreamWriter writer = new StreamWriter(Path.Combine(path, _fileName)))
+            using (StreamWriter writer = new StreamWriter(Path.Combine(path, FileName)))
             {
                 writer.Write(parameters);
             }
