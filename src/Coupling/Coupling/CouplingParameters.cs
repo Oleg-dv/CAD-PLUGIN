@@ -229,16 +229,18 @@ namespace Coupling
         /// <param name="value">Значение</param>
         /// <param name="parameterName">Название параметра</param>
         /// <param name="unit">Еденица измерения</param>
-        /// <returns></returns>
+        /// <returns>Параметр</returns>
         public double ValidateValue(double min, double max, double value,
             string parameterName, string unit)
         {
-            if (value > max || value < min)
+            if (!(value > max) && !(value < min))
             {
-                ExceptionMessage(parameterName, value, min, max, unit);
+                return value;
             }
 
-            return value;
+            throw new ArgumentException(
+                $"Неверное значение {parameterName} = {value} {unit}.\n" +
+                $"Область допустимых значений: {min} {unit} - {max} {unit}!");
         }
 
         /// <summary>
@@ -305,22 +307,6 @@ namespace Coupling
                 throw new ArgumentException($"Значение должно быть больше нуля!");
             }
             return true;
-        }
-
-        /// <summary>
-        /// Присваевает текст сообщению ошибки.
-        /// </summary>
-        /// <param name="parameterName">Название параметра.</param>
-        /// <param name="value">Значение параметра.</param>
-        /// <param name="minValue">Минимальное значение параметра.</param>
-        /// <param name="maxValue">Максимальное значение параметра.</param>
-        /// <param name="unit">Еденицы измерения</param>
-        private void ExceptionMessage(string parameterName,
-            double value, double minValue, double maxValue, string unit)
-        {
-            throw new ArgumentException(
-                $"Неверное значение {parameterName} = {value} {unit}.\n" +
-                $"Область допустимых значений: {minValue} {unit} - {maxValue} {unit}!");
         }
 
         /// <summary>
