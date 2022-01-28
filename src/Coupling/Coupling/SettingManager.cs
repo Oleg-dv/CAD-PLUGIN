@@ -14,7 +14,6 @@ namespace Coupling
     /// </summary>
     public static class SettingManager
     {
-        //TODO: RSDN+
         /// <summary>
         /// Имя файла с настройками
         /// </summary>

@@ -98,8 +98,6 @@ namespace Coupling
             }
             set
             {
-                //TODO: дубль+
-
                 string parameterName = "диаметра кольца";
                 string unit = "мм.";
 
@@ -126,8 +124,6 @@ namespace Coupling
             }
             set
             {
-                //TODO: дубль+
-
                 string parameterName = "центрального отверстия";
                 string unit = "мм.";
 
@@ -152,8 +148,6 @@ namespace Coupling
             } 
             set 
             {
-                //TODO: дубль+
-
                 string parameterName = "количества малых отверстий";
                 string unit = "шт.";
 
@@ -197,8 +191,6 @@ namespace Coupling
             get => _couplingWidth;
             set
             {
-                //TODO: дубль+
-
                 string parameterName = "ширины кольца";
                 string unit = "мм.";
 
@@ -219,8 +211,6 @@ namespace Coupling
             }
             set 
             {
-                //TODO: дубль+
-
                 string parameterName = "диаметра малых отверстий";
                 string unit = "мм.";
 
@@ -230,6 +220,7 @@ namespace Coupling
             }
         }
 
+        //TODO: XML
         public double ValidateValue(double min, double max, double value,
             string parameterName, string unit)
         {
@@ -294,8 +285,7 @@ namespace Coupling
                 }
             }
         }
-
-        //TODO: naming+
+        
         /// <summary>
         /// Исключение
         /// </summary>
@@ -335,8 +325,7 @@ namespace Coupling
             CountOfSmallHoles = 3;
             CouplingWidth = 10;
         }
-
-        //TODO: XML+
+        
         /// <summary>
         /// Метод для сравнения двух объектов с параметрами
         /// </summary>
