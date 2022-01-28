@@ -221,6 +221,15 @@ namespace Coupling
         }
 
         //TODO: XML
+        /// <summary>
+        /// Метод для валидации параметров
+        /// </summary>
+        /// <param name="min">Минимальное значение</param>
+        /// <param name="max">Максимальное значение</param>
+        /// <param name="value">Значение</param>
+        /// <param name="parameterName">Название параметра</param>
+        /// <param name="unit">Еденица измерения</param>
+        /// <returns></returns>
         public double ValidateValue(double min, double max, double value,
             string parameterName, string unit)
         {
